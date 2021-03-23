@@ -31,9 +31,30 @@ from runner.koan import *
 # More scoring examples are given in the tests below:
 #
 # Your goal is to write the score method.
-
+from collections import Counter
 def score(dice):
     # You need to write this method
+    mcounter = Counter(dice)
+    gscore = 0
+    for num, count in mcounter.items():
+        if num == 1 :
+            if count >= 3 :
+                increment = 1000 + (count-3) * 100
+            else:
+                increment = count * 100
+        elif num == 5 :
+            if count >= 3 :
+                increment = 500 + (count-3) * 50
+            else:
+                increment = count * 50
+        elif count >= 3:
+            increment = num * 100
+        else:
+            increment = 0
+        gscore += increment
+    return gscore
+
+
     pass
 
 class AboutScoringProject(Koan):
